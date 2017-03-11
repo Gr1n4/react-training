@@ -43,7 +43,7 @@ module.exports = {
       {
         test: /\.sass$/,
         include: helpers.root('src', 'app'),
-        loader: 'raw-loader!sass-loader?sourceMap'
+        loader: 'style-loader!css-loader?sourceMap!resolve-url-loader!sass-loader?sourceMap'
       },
     ]
   },
