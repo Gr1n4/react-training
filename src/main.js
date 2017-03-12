@@ -7,20 +7,9 @@ import {Provider} from 'react-redux';
 
 import './assets/sass/index.sass';
 
+import reducer from './app/reducers';
+
 import App from './app/app.component';
-
-const initialState = [
-  'element 1',
-  'element 2'
-];
-
-function reducer(state = initialState, action) {
-  switch (action.type) {
-    case 'ADD_ELEMENT':
-      return [...state, action.payload];
-  }
-  return state;
-}
 
 const store = createStore(reducer);
 

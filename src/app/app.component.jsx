@@ -6,18 +6,27 @@ import {connect} from 'react-redux';
 import './app.component.sass';
 
 class App extends Component {
-  addElement() {
-    this.props.addElement('test');
+  addTrack() {
+    this.props.addTrack(`track ${this.props.tracks.length + 1}`);
+  }
+
+  addPlaylist() {
+    this.props.addPlaylist(`playlist ${this.props.playlists.length + 1}`);
   }
 
   render() {
-    console.log(this.props.testStore);
     return (
       <div>
         <h1>Hello World!</h1>
-        <button onClick={this.addElement.bind(this)}>add</button>
+        <button onClick={this.addTrack.bind(this)}>add track</button>
         <ul>
-          {this.props.testStore.map((item, index) =>
+          {this.props.tracks.map((item, index) =>
+            <li key={index}>{item}</li>
+          )}
+        </ul>
+        <button onClick={this.addPlaylist.bind(this)}>add playlist</button>
+        <ul>
+          {this.props.playlists.map((item, index) =>
             <li key={index}>{item}</li>
           )}
         </ul>
@@ -28,14 +37,18 @@ class App extends Component {
 
 function mapState(state) {
   return {
-    testStore: state
+    tracks: state.tracks,
+    playlists: state.playlists
   }
 }
 
 function dispatchState(dispatch) {
   return {
-    addElement: function(elem) {
-      dispatch({type: 'ADD_ELEMENT', payload: elem});
+    addTrack: function(elem) {
+      dispatch({type: 'ADD_TRACK', payload: elem});
+    },
+    addPlaylist: function(elem) {
+      dispatch({type: 'ADD_PLAYLIST', payload: elem});
     }
   }
 }
